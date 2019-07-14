@@ -16,7 +16,17 @@ class DomainView(View):
             body_unicode = request.body.decode('utf-8')
             body = json.loads(body_unicode)
             utterance = body.get('utterance')
-            res = Response(okt.pos(utterance, norm=True))
+
+            data = {
+                'phrases': okt.phrases(utterance),
+                'nouns': okt.nouns(utterance),
+                'pos': {
+                    'norm': okt.pos(utterance, norm=True),
+                    'stem': okt.pos(utterance, norm=True, stem=True)
+                },
+                'morphs': okt.morphs(utterance)
+            }
+            res = Response(data)
             return HttpResponse(json.dumps(res.response()))
         except:
             return HttpResponse('Error occurred!')
