@@ -18,7 +18,7 @@
 #       range.
 #
 
-bind = '127.0.0.1:8001'
+bind = '0.0.0.0:8001'
 backlog = 2048
 
 #
@@ -122,7 +122,7 @@ spew = False
 #       None to signal that Python should choose one on its own.
 #
 
-daemon = True
+daemon = False 
 # raw_env = [
 #     'DJANGO_SECRET_KEY=something',
 #     'SPAM=eggs',
