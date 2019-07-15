@@ -1,10 +1,10 @@
 # Code by ByungWook.Kang @lesimor
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import View
 
-from domains import okt
+from domains import Domain
 from utils.response import Response
 
 
@@ -17,18 +17,11 @@ class DomainView(View):
             body = json.loads(body_unicode)
             utterance = body.get('utterance')
 
-            data = {
-                'phrases': okt.phrases(utterance),
-                'nouns': okt.nouns(utterance),
-                'pos': {
-                    'norm': okt.pos(utterance, norm=True),
-                    'stem': okt.pos(utterance, norm=True, stem=True)
-                },
-                'morphs': okt.morphs(utterance)
-            }
+            data = Domain.analyze_utterance(utterance)
             res = Response(data)
-            return HttpResponse(json.dumps(res.response()))
+            return JsonResponse(res.response, json_dumps_params={'ensure_ascii': True})
         except:
+            # TODO: Error handling
             return HttpResponse('Error occurred!')
 
     def get(self, request, *args, **kwargs):

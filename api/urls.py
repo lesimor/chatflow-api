@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from domains.view import DomainView
+from api.views.domain import DomainView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

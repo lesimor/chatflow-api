@@ -6,6 +6,7 @@ class Response:
         self._data = data
         self._error = error
 
+    @property
     def response(self):
         return {
             'result': self._data
