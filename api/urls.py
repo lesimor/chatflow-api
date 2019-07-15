@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 from api.views.domain import DomainView
+from api.views.kakao import KakaoSkill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('domain/', DomainView.as_view(), name='domain view'),
+    path('kakao/skill/', KakaoSkill.as_view(), name='kakao skill view'),
 ]
