@@ -1,4 +1,4 @@
-django==2.2.3
+django==2.2.24
 gunicorn==19.9.0
 supervisor==4.0.3
 konlpy==0.5.1
